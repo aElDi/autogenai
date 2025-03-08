@@ -11,7 +11,7 @@ load_dotenv()
 
 class AIAppGenerator:
     def __init__(self, api_key: str, site_url: str = "https://example.com", site_name: str = "AI App Generator", 
-                 teacher_model: str = "anthropic/claude-3-opus", generator_model: str = "openai/gpt-4o", 
+                 teacher_model: str = "google/gemini-2.0-pro-exp-02-05:free", generator_model: str = "deepseek/deepseek-r1-zero:free", 
                  verbose: bool = False):
         """
         Initialize the AI Application Generator with the specified models.
@@ -516,7 +516,7 @@ def interactive_mode(generator: AIAppGenerator):
     print("Thank you for using the AI Application Generator!")
 
 
-def test_api_connection(api_key, model="anthropic/claude-3-haiku", verbose=True):
+def test_api_connection(api_key, model="google/gemini-2.0-pro-exp-02-05:free", verbose=True):
     """Test the API connection with a simple request."""
     try:
         client = OpenAI(
@@ -578,12 +578,12 @@ def main():
     
     # Test API connection if requested
     if args.test_api:
-        success = test_api_connection(api_key, model="anthropic/claude-3-haiku", verbose=True)
+        success = test_api_connection(api_key, model="google/gemini-2.0-pro-exp-02-05:free", verbose=True)
         return 0 if success else 1
     
     # Validate the API connection before proceeding
     print("Testing API connection before starting...")
-    if not test_api_connection(api_key, model="anthropic/claude-3-haiku", verbose=args.verbose):
+    if not test_api_connection(api_key, model="google/gemini-2.0-pro-exp-02-05:free", verbose=args.verbose):
         print("\nError: Could not connect to the OpenRouter API. Please check your API key and internet connection.")
         return 1
     
